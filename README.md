@@ -7,7 +7,7 @@
 
 <img alt="article" src="https://user-images.githubusercontent.com/73867548/162349911-7352f7e7-954a-496f-bbd5-d0037d1490f0.png">
 
-Apple Developer Documents 문서 중에서 `Article` 로 분류된 모든 페이지에 대해서 문서에 참여하실 수 있습니다. 개인적으로 학습을 하시면서, 혹은 평소에 관심있었던 주제에 대해서 Article을 찾아서 참여해주시면 됩니다.
+Apple Developer Documents 문서 중에서 `Article` 로 분류된 모든 페이지에 대해서 문서에 참여하실 수 있습니다. 개인적으로 학습을 하시면서, 혹은 평소에 관심있었던 주제에 대해서 Article을 찾아서 참여해주시면 됩니다. Apple Development Article 문서 작업시에는 ['Apple Development Article 번역 가이드 문서'](https://github.com/yagom-academy/apple-development-article/blob/main/guide/Apple%20Development%20Article%20번역%20가이드.md) 를 참고해주세요.
 
 공유 문서에 참여하는 방법은 아래 내용을 참고해주세요.
 
@@ -94,7 +94,7 @@ Apple Developer Documents 문서 중에서 `Article` 로 분류된 모든 페이
 - **작업할 때 반드시 [`Wiki`](https://github.com/yagom-academy/swift-doc-kor/wiki/용어-위키) 를 참고하여 정확하고 통일된 용어를 사용합니다.**
 - 내가 작성(번역)한 문장을 소리내어 읽어보았을 때 숨이 차거나 부자연스럽다면 문장을 짧게 끊어봐도 좋습니다.
 - API Design Guidelines 문서 작업시 [`API Design Guidelines 번역 가이드 문서`](https://github.com/yagom-academy/swift-doc-kor/blob/main/guide/API%20Design%20Guidelines%20번역%20가이드.md) 를 참고해주세요.
-- Apple Development Article 문서 작업시 ['Apple Development Article 번역 가이드 문서'](guide/Apple Development Article 번역 가이드.md) 를 참고해주세요.
+- Apple Development Article 문서 작업시 ['Apple Development Article 번역 가이드 문서'](https://github.com/yagom-academy/apple-development-article/blob/main/guide/Apple%20Development%20Article%20번역%20가이드.md) 를 참고해주세요.
 
 <br>
 
