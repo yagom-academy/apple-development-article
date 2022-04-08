@@ -1,0 +1,328 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Receiving and Handling Events with Combine · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    
+    <link rel="prev" href="Determining If CloudKit Is Right for Your App.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Articles</li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" data-path="Determining If CloudKit Is Right for Your App.html">
+            
+                <a href="Determining If CloudKit Is Right for Your App.html">
+            
+                    
+                    Determining If CloudKit Is Right for Your App
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="2.2" data-path="Receiving and Handling Events with Combine.html">
+            
+                <a href="Receiving and Handling Events with Combine.html">
+            
+                    
+                    Receiving and Handling Events with Combine
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >Receiving and Handling Events with Combine</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="receiving-and-handling-events-with-combine"><i><span style="color: #C0C0C0">Receiving and Handling Events with Combine</span></i></h1>
+<h1 id="&#xCEF4;&#xBC14;&#xC778;&#xC744;-&#xD65C;&#xC6A9;&#xD574;-&#xC774;&#xBCA4;&#xD2B8;&#xB97C;-&#xBC1B;&#xACE0;-&#xB2E4;&#xB8E8;&#xC5B4;-&#xBD05;&#xC2DC;&#xB2E4;">&#xCEF4;&#xBC14;&#xC778;&#xC744; &#xD65C;&#xC6A9;&#xD574; &#xC774;&#xBCA4;&#xD2B8;&#xB97C; &#xBC1B;&#xACE0;, &#xB2E4;&#xB8E8;&#xC5B4; &#xBD05;&#xC2DC;&#xB2E4;.</h1>
+<p><i><span style="color: #C0C0C0">Customize and receive events from asynchronous sources.</span></i><br>&#xBE44;&#xB3D9;&#xAE30; &#xC18C;&#xC2A4;&#xB85C;&#xBD80;&#xD130; &#xC774;&#xBCA4;&#xD2B8;&#xB97C; &#xBC1B;&#xACE0; &#xC870;&#xC791;&#xD574;&#xBD05;&#xC2DC;&#xB2E4;.</p>
+<hr>
+<h2 id="overview-"><i><span style="color: #C0C0C0">Overview </span></i></h2>
+<h2 id="&#xAC1C;&#xC694;">&#xAC1C;&#xC694;</h2>
+<p><i><span style="color: #C0C0C0">The Combine framework provides a declarative approach for how your app processes events. Rather than potentially implementing multiple delegate callbacks or completion handler closures, you can create a single processing chain for a given event source. Each part of the chain is a Combine operator that performs a distinct action on the elements received from the previous step. </span></i><br>Combine &#xD504;&#xB808;&#xC784;&#xC6CC;&#xD06C;&#xB294; &#xC571;&#xC774; &#xC774;&#xBCA4;&#xD2B8;&#xB97C; &#xCC98;&#xB9AC;&#xD558;&#xB294; &#xBC29;&#xC2DD;&#xC5D0; &#xB300;&#xD55C; &#xC120;&#xC5B8;&#xC801; &#xC811;&#xADFC;&#xBC29;&#xC2DD;&#xC744; &#xC81C;&#xACF5;&#xD569;&#xB2C8;&#xB2E4;. &#xB2F9;&#xC2E0;&#xC740; &#xC7A0;&#xC7AC;&#xC801;&#xC73C;&#xB85C; &#xC5EC;&#xB7EC; &#xB51C;&#xB9AC;&#xAC8C;&#xC774;&#xD2B8; &#xCF5C;&#xBC31;&#xC774;&#xB098;, &#xCEF4;&#xD50C;&#xB9AC;&#xC158; &#xD578;&#xB4E4;&#xB7EC;&#xB97C; &#xAD6C;&#xD604;&#xD558;&#xB294; &#xB300;&#xC2E0;, &#xC9C0;&#xC815;&#xB41C; &#xC774;&#xBCA4;&#xD2B8; &#xC18C;&#xC2A4;&#xC5D0; &#xB300;&#xD55C; &#xB2E8;&#xC77C; &#xCC98;&#xB9AC; &#xCCB4;&#xC778;&#xC744; &#xB9CC;&#xB4E4; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xCCB4;&#xC778;&#xC758; &#xAC01; &#xBD80;&#xBD84;&#xC740; &#xC774;&#xC804; &#xB2E8;&#xACC4;&#xC5D0;&#xC11C; &#xBC1B;&#xC740; &#xC694;&#xC18C;&#xC5D0; &#xB300;&#xD574; &#xACE0;&#xC720;&#xD55C; &#xC791;&#xC5C5;&#xC744; &#xC9C4;&#xD589;&#xD558;&#xB294; Combine&#xC758; &#xC5F0;&#xC0B0;&#xC790;&#xC785;&#xB2C8;&#xB2E4;.</p>
+<p><i><span style="color: #C0C0C0"> Consider an app that needs to filter a table or collection view based on the contents of a text field. In AppKit, each keystroke in the text field produces a <a href="https://developer.apple.com/documentation/foundation/notification" target="_blank"><code>Notification</code></a> that you can subscribe to with Combine. After receiving the notification, you can use operators to change the content and timing of event delivery, and use the final result to update your app&#x2019;s user interface. </span></i>    </p>
+<p>&#xD14D;&#xC2A4;&#xD2B8; &#xD544;&#xB4DC;&#xC758; &#xB0B4;&#xC6A9;&#xC744; &#xBC14;&#xD0D5;&#xC73C;&#xB85C; &#xD14C;&#xC774;&#xBE14;&#xC774;&#xB098; &#xCEEC;&#xB809;&#xC158; &#xBDF0;&#xB97C; &#xD544;&#xD130;&#xB9C1;&#xD574;&#xC57C;&#xD558;&#xB294; &#xC571;&#xC744; &#xACE0;&#xB824;&#xD574;&#xBD05;&#xC2DC;&#xB2E4;. AppKit &#xC5D0;&#xC11C;, &#xD14D;&#xC2A4;&#xD2B8; &#xD544;&#xB4DC;&#xC758; &#xAC01; &#xD0A4;&#xC5D0; &#xB300;&#xD55C; &#xC785;&#xB825;&#xC740; &#xCEF4;&#xBC14;&#xC778;&#xC744; &#xD1B5;&#xD574; &#xAD6C;&#xB3D9;&#xD560; &#xC218; &#xC788;&#xB294; <a href="https://developer.apple.com/documentation/foundation/notification" target="_blank"><code>Notification</code></a>&#xC744; &#xB9CC;&#xB4E4;&#xC5B4;&#xB0C5;&#xB2C8;&#xB2E4;. Notification&#xC744; &#xBC1B;&#xC740; &#xC774;&#xD6C4;&#xC5D0;, &#xB2F9;&#xC2E0;&#xC740; &#xC5F0;&#xC0B0;&#xC790;&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xC5EC; &#xC804;&#xB2EC;&#xB41C; &#xC774;&#xBCA4;&#xD2B8;&#xC758; &#xB0B4;&#xC6A9;&#xACFC; &#xC2DC;&#xAC04;&#xC744; &#xBCC0;&#xACBD;&#xD558;&#xAC70;&#xB098;, &#xCD5C;&#xC885; &#xACB0;&#xACFC;&#xBB3C;&#xC744; &#xD1A0;&#xB300;&#xB85C; &#xC571;&#xC758; UI&#xB97C; &#xC5C5;&#xB370;&#xC774;&#xD2B8;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. </p>
+<p><br></p>
+<h2 id="connext-a-publisher-to-a-subscriber"><i><span style="color: #C0C0C0">Connext a Publisher to a Subscriber.</span></i></h2>
+<h2 id="publisher&#xAC8C;&#xC2DC;&#xC790;-&#xC640;-subscriber&#xAD6C;&#xB3C5;&#xC790;-&#xB97C;-&#xC5F0;&#xACB0;&#xD574;&#xBD05;&#xC2DC;&#xB2E4;">Publisher(&#xAC8C;&#xC2DC;&#xC790;) &#xC640; Subscriber(&#xAD6C;&#xB3C5;&#xC790;) &#xB97C; &#xC5F0;&#xACB0;&#xD574;&#xBD05;&#xC2DC;&#xB2E4;.</h2>
+<p><i><span style="color: #C0C0C0">To receive the text field&#x2019;s notifications with Combine, access the default instance of <a href="https://developer.apple.com/documentation/foundation/notificationcenter" target="_blank"><code>NotificationCenter</code></a> and call its <a href="https://developer.apple.com/documentation/foundation/notificationcenter/3329353-publisher" target="_blank"><code>publisher(for:object:)</code></a> method. This call takes the notification name and source object that you want notifications from, and returns a publisher that produces notification elements.</span></i><br>Combine&#xC73C;&#xB85C; &#xD14D;&#xC2A4;&#xD2B8;&#xD544;&#xB4DC;&#xC758; &#xC54C;&#xB9BC;&#xC744; &#xC804;&#xB2EC;&#xBC1B;&#xAE30; &#xC704;&#xD574;&#xC120;,<a href="https://developer.apple.com/documentation/foundation/notificationcenter" target="_blank"><code>NotificationCenter</code></a> &#xC758; default &#xC778;&#xC2A4;&#xD134;&#xC2A4;&#xC5D0; &#xC811;&#xADFC;&#xD558;&#xC5EC;, <a href="https://developer.apple.com/documentation/foundation/notificationcenter/3329353-publisher" target="_blank"><code>publisher(for:object:)</code></a> &#xBA54;&#xC11C;&#xB4DC;&#xB97C; &#xD638;&#xCD9C;&#xD574;&#xC57C;&#xD569;&#xB2C8;&#xB2E4;. &#xC774; &#xD638;&#xCD9C;&#xC740; &#xC54C;&#xB9BC;&#xC744; &#xBC1B;&#xC744; &#xC774;&#xB984;&#xACFC; &#xC18C;&#xC2A4; &#xAC1D;&#xCCB4;&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xACE0;, &#xC54C;&#xB9BC; &#xC694;&#xC18C;&#xB97C; &#xC0DD;&#xC131;&#xD574;&#xB0B4;&#xB294; publisher &#xB97C; &#xBC18;&#xD658;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<pre><code class="lang-swift"><span class="hljs-keyword">let</span> pub = <span class="hljs-type">NotificationCenter</span>.<span class="hljs-keyword">default</span>    
+        .publisher(<span class="hljs-keyword">for</span>: <span class="hljs-type">NSControl</span>.textDidChangeNotification, object: filterField)
+</code></pre>
+<p><i><span style="color: #C0C0C0">You use a <a href="https://developer.apple.com/documentation/combine/subscriber" target="_blank"><code>Subscriber</code></a> to receive elements from the publisher. The subscriber defines an associated type, <a href="https://developer.apple.com/documentation/combine/subscriber/input" target="_blank"><code>Input</code></a>, to declare the type that it receives. The publisher also defines a type, <a href="https://developer.apple.com/documentation/combine/publisher/output" target="_blank"><code>Output</code></a>, to declare what it produces. The publisher and subscriber both define a type, <a href="https://developer.apple.com/documentation/combine/publisher/failure" target="_blank"><code>Failure</code></a>, to indicate the kind of error they produce or receive. To connect a subscriber to a producer, the <a href="https://developer.apple.com/documentation/combine/publisher/output" target="_blank"><code>Output</code></a> must match the <a href="https://developer.apple.com/documentation/combine/subscriber/input" target="_blank"><code>Input</code></a>, and the <a href="https://developer.apple.com/documentation/combine/publisher/failure" target="_blank"><code>Failure</code></a> types must also match.</span></i><br><a href="https://developer.apple.com/documentation/combine/subscriber" target="_blank"><code>Subscriber</code></a> &#xB97C; &#xD65C;&#xC6A9;&#xD558;&#xC5EC; publisher &#xB85C;&#xBD80;&#xD130; &#xC694;&#xC18C;&#xB4E4;&#xC744; &#xC804;&#xB2EC;&#xBC1B;&#xC744; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. Subscriber &#xB294;  <a href="https://developer.apple.com/documentation/combine/subscriber/input" target="_blank"><code>Input</code></a> &#xC774;&#xB77C;&#xB294; &#xC804;&#xB2EC;&#xBC1B;&#xC744; &#xC5F0;&#xAD00; &#xD0C0;&#xC785;&#xC744; &#xC815;&#xC758;&#xD569;&#xB2C8;&#xB2E4;. Publisher  &#xC5ED;&#xC2DC; <a href="https://developer.apple.com/documentation/combine/publisher/output" target="_blank"><code>Output</code></a>&#xC774;&#xB77C;&#xB294; &#xB9CC;&#xB4E4;&#xC5B4;&#xB0BC; &#xC5F0;&#xAD00; &#xD0C0;&#xC785;&#xC744; &#xC815;&#xC758;&#xD569;&#xB2C8;&#xB2E4;. Publisher &#xC640; subscriber &#xB294; &#xBAA8;&#xB450; &#xC0DD;&#xC131;&#xD558;&#xAC70;&#xB098;, &#xC218;&#xC2E0;&#xD560; &#xB54C; &#xBC1C;&#xC0DD;&#xD558;&#xB294; &#xBB38;&#xC81C; &#xB098;&#xD0C0;&#xB0B4;&#xB294; <a href="https://developer.apple.com/documentation/combine/publisher/failure" target="_blank"><code>Failure</code></a>&#xB77C;&#xB294; &#xD0C0;&#xC785;&#xC744; &#xC815;&#xC758;&#xD569;&#xB2C8;&#xB2E4;. Subscriber &#xC640; publisher&#xB97C; &#xC11C;&#xB85C; &#xB9E4;&#xCE6D;&#xD558;&#xAE30; &#xC704;&#xD574;&#xC11C;&#xB294;, <a href="https://developer.apple.com/documentation/combine/publisher/output" target="_blank"><code>Output</code></a>&#xACFC; <a href="https://developer.apple.com/documentation/combine/subscriber/input" target="_blank"><code>Input</code></a> &#xD0C0;&#xC785; &#xADF8;&#xB9AC;&#xACE0; &#xAC01;&#xC790;&#xC758; <a href="https://developer.apple.com/documentation/combine/publisher/failure" target="_blank"><code>Failure</code></a> &#xD0C0;&#xC785;&#xC774; &#xC11C;&#xB85C; &#xAC19;&#xC544;&#xC57C;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<p><i><span style="color: #C0C0C0">Combine provides two built-in subscribers, which automatically match the output and failure types of their attached publisher:</span></i><br>Combine&#xC740; output &#xACFC; failure &#xD0C0;&#xC785;&#xC744; &#xC790;&#xB3D9;&#xC73C;&#xB85C; &#xB9E4;&#xCE6D;&#xD558;&#xB294; &#xB450; &#xAC1C;&#xC758; Subscriber &#xB97C; &#xAE30;&#xBCF8;&#xC801;&#xC73C;&#xB85C; &#xC81C;&#xACF5;&#xD569;&#xB2C8;&#xB2E4;. </p>
+<ul>
+<li><i><span style="color: #C0C0C0"><a href="https://developer.apple.com/documentation/combine/publisher/sink(receivecompletion:receivevalue:" target="_blank"><code>sink(receiveCompletion:receiveValue:)</code></a> ) takes two closures. The first closure executes when it receives <a href="https://developer.apple.com/documentation/combine/subscribers/completion" target="_blank"><code>Subscribers.Completion</code></a>, which is an enumeration that indicates whether the publisher finished normally or failed with an error. The second closure executes when it receives an element from the publisher.</span></i><br>  <a href="https://developer.apple.com/documentation/combine/publisher/sink(receivecompletion:receivevalue:" target="_blank"><code>sink(receiveCompletion:receiveValue:)</code></a> ) &#xB294; &#xB450; &#xAC1C;&#xC758; &#xD074;&#xB85C;&#xC800;&#xB97C; &#xAC16;&#xC2B5;&#xB2C8;&#xB2E4;. &#xCCAB; &#xBC88;&#xC9F8; &#xD074;&#xB85C;&#xC800;&#xB294; <a href="https://developer.apple.com/documentation/combine/subscribers/completion" target="_blank"><code>Subscribers.Completion</code></a> &#xC744; &#xC218;&#xC2E0;&#xD560; &#xB54C; &#xC2E4;&#xD589;&#xB418;&#xBA70;, &#xC774;&#xB294; Publisher &#xAC00; &#xC815;&#xC0C1;&#xC801;&#xC73C;&#xB85C; &#xC791;&#xC5C5;&#xC744; &#xB9C8;&#xBB34;&#xB9AC; &#xC9C0;&#xC5C8;&#xB294;&#xC9C0;, &#xD639;&#xC740; &#xC5D0;&#xB7EC;&#xC640; &#xD568;&#xAED8; &#xC2E4;&#xD328;&#xD588;&#xB294;&#xC9C0;&#xB97C; &#xB4DC;&#xB7EC;&#xB0B4;&#xB294; &#xC5F4;&#xAC70;&#xD615;&#xC785;&#xB2C8;&#xB2E4;. &#xB450; &#xBC88;&#xC9F8; &#xD074;&#xB85C;&#xC800;&#xB294; Publisher &#xB85C; &#xBD80;&#xD130; &#xC694;&#xC18C;&#xB97C; &#xC218;&#xC2E0;&#xD560; &#xB54C; &#xC2E4;&#xD589;&#xB429;&#xB2C8;&#xB2E4;.</li>
+<li><i><span style="color: #C0C0C0"><a href="https://developer.apple.com/documentation/combine/publisher/assign(to:on:" target="_blank"><code>assign(to:on:)</code></a>) immediately assigns every element it receives to a property of a given object, using a key path to indicate the property.</span></i><br>  <a href="https://developer.apple.com/documentation/combine/publisher/assign(to:on:" target="_blank"><code>assign(to:on:)</code></a>) &#xC740; &#xC8FC;&#xC5B4;&#xC9C4; &#xAC1D;&#xCCB4;&#xC758; &#xD504;&#xB85C;&#xD37C;&#xD2F0;&#xC5D0; &#xC804;&#xB2EC;&#xBC1B;&#xC740; &#xBAA8;&#xB4E0; &#xC694;&#xC18C;&#xB97C; &#xC989;&#xAC01;&#xC801;&#xC73C;&#xB85C; &#xD560;&#xB2F9;&#xD569;&#xB2C8;&#xB2E4;. &#xC774; &#xB54C;, &#xD0A4;&#xD328;&#xC2A4;&#xB97C; &#xC0AC;&#xC6A9;&#xD574; &#xD504;&#xB85C;&#xD37C;&#xD2F0;&#xB97C; &#xAC00;&#xB9AC;&#xD0B5;&#xB2C8;&#xB2E4;.</li>
+</ul>
+<p><i><span style="color: #C0C0C0">For example, you can use the sink subscriber to log when the publisher completes, and each time it receives an element:</span></i><br>&#xC608;&#xB97C; &#xB4E4;&#xC5B4;, publisher &#xAC00; &#xC791;&#xC5C5;&#xC744; &#xB9C8;&#xCCE4;&#xC744; &#xB54C;, &#xADF8;&#xB9AC;&#xACE0; &#xC694;&#xC18C;&#xB97C; &#xC218;&#xC2E0;&#xBC1B;&#xB294; &#xAC01;&#xAC01;&#xC758; &#xC2DC;&#xC810;&#xC5D0; sink subscriber &#xB97C; &#xC0AC;&#xC6A9;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<pre><code class="lang-swift"><span class="hljs-keyword">let</span> sub = <span class="hljs-type">NotificationCenter</span>.<span class="hljs-keyword">default</span>    
+        .publisher(<span class="hljs-keyword">for</span>: <span class="hljs-type">NSControl</span>.textDidChangeNotification, object: filterField)    
+        .sink(receiveCompletion: { <span class="hljs-built_in">print</span> ($<span class="hljs-number">0</span>) },          
+                    receiveValue: { <span class="hljs-built_in">print</span> ($<span class="hljs-number">0</span>) })
+</code></pre>
+<p><i><span style="color: #C0C0C0">Both the <code>sink(receiveCompletion:receiveValue:)</code> and <a href="https://developer.apple.com/documentation/combine/publisher/assign(to:on:" target="_blank"><code>assign(to:on:)</code></a>) subscribers request an unlimited number of elements from their publishers. To control the rate at which you receive elements, create your own subscriber by implementing the <a href="https://developer.apple.com/documentation/combine/subscriber" target="_blank"><code>Subscriber</code></a> protocol.</span></i><br><code>sink(receiveCompletion:receiveValue:)</code> &#xC640; <a href="https://developer.apple.com/documentation/combine/publisher/assign(to:on:" target="_blank"><code>assign(to:on:)</code></a>) subscriber&#xB294; &#xB458; &#xB2E4; publisher&#xB85C; &#xBD80;&#xD130; &#xC694;&#xC18C;&#xB4E4;&#xC744; &#xC81C;&#xC57D;&#xC5C6;&#xC774; &#xC804;&#xB2EC;&#xBC1B;&#xC2B5;&#xB2C8;&#xB2E4;. &#xC804;&#xB2EC;&#xBC1B;&#xC744; &#xC694;&#xC18C;&#xB4E4;&#xC744; &#xC81C;&#xC5B4;&#xD558;&#xAE30; &#xC704;&#xD574;&#xC120;, &#xC9C1;&#xC811; <a href="https://developer.apple.com/documentation/combine/subscriber" target="_blank"><code>Subscriber</code></a> &#xD504;&#xB85C;&#xD1A0;&#xCF5C;&#xC744; &#xCC44;&#xD0DD;&#xD574; &#xC790;&#xC2E0;&#xB9CC;&#xC758; subscriber&#xB97C; &#xB9CC;&#xB4E4; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p><br></p>
+<h2 id="change-the-output-type-with-operators"><i><span style="color: #C0C0C0">Change the Output Type with Operators</span></i></h2>
+<h2 id="operator&#xB97C;-&#xD65C;&#xC6A9;&#xD574;-output-&#xD0C0;&#xC785;&#xC744;-&#xBCC0;&#xACBD;&#xD574;&#xBD05;&#xC2DC;&#xB2E4;">Operator&#xB97C; &#xD65C;&#xC6A9;&#xD574; Output &#xD0C0;&#xC785;&#xC744; &#xBCC0;&#xACBD;&#xD574;&#xBD05;&#xC2DC;&#xB2E4;.</h2>
+<p><i><span style="color: #C0C0C0">The sink subscriber in the previous section performs all its work in the <code>receiveValue</code> closure. This could be burdensome if it needs to perform a lot of custom work with received elements or maintain state between invocations. The advantage of Combine comes from combining operators to customize event delivery.</span></i><br>&#xC774;&#xC804; &#xC139;&#xC158;&#xC5D0;&#xC11C; &#xB2E4;&#xB8E8;&#xC5C8;&#xB358; <code>sink</code> subscriber&#xB294; <code>receiveValue</code>&#xD074;&#xB85C;&#xC800;&#xC5D0;&#xC11C; &#xBAA8;&#xB4E0; &#xC791;&#xC5C5;&#xC744; &#xC218;&#xD589;&#xD569;&#xB2C8;&#xB2E4;.  &#xB9CC;&#xC57D; &#xC804;&#xB2EC;&#xBC1B;&#xC740; &#xC694;&#xC18C;&#xB97C; &#xBC14;&#xD0D5;&#xC73C;&#xB85C; &#xB9CE;&#xC740; &#xC0AC;&#xC6A9;&#xC790; &#xC815;&#xC758; &#xC791;&#xC5C5;&#xC744; &#xC218;&#xD589;&#xD574;&#xC57C;&#xD558;&#xAC70;&#xB098;, &#xD638;&#xCD9C;&#xB4E4; &#xC0AC;&#xC774;&#xC5D0;&#xC11C; &#xC0C1;&#xD0DC;&#xB97C; &#xC720;&#xC9C0;&#xD574;&#xC57C;&#xD558;&#xB294; &#xC0C1;&#xD669;&#xC774;&#xB77C;&#xBA74;, &#xC774;&#xB294; &#xBD80;&#xB2F4;&#xC774; &#xB420; &#xC218;&#xB3C4; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p><i><span style="color: #C0C0C0">For example, <a href="https://developer.apple.com/documentation/foundation/notificationcenter/publisher/output" target="_blank"><code>NotificationCenter.Publisher.Output</code></a> isn&#x2019;t a convenient type to receive in the callback if all you need is the text field&#x2019;s string value. Since a publisher&#x2019;s output is essentially a sequence of elements over time, Combine offers sequence-modifying operators like <a href="https://developer.apple.com/documentation/combine/publisher/map(_:" target="_blank"><code>map(_:)</code></a>-99evh), <a href="https://developer.apple.com/documentation/combine/publisher/flatmap(maxpublishers:_:" target="_blank"><code>flatMap(maxPublishers:_:)</code></a>-3k7z5), and <a href="https://developer.apple.com/documentation/combine/publisher/reduce(_:_:" target="_blank"><code>reduce(_:_:)</code></a>). The behavior of these operators is similar to their equivalents in the Swift standard library.</span></i><br>&#xC608;&#xB97C;&#xB4E4;&#xC5B4;, <a href="https://developer.apple.com/documentation/foundation/notificationcenter/publisher/output" target="_blank"><code>NotificationCenter.Publisher.Output</code></a> &#xACFC; &#xAC19;&#xC740; &#xD0C0;&#xC785;&#xC740; &#xD14D;&#xC2A4;&#xD2B8; &#xD544;&#xB4DC;&#xC758; &#xBB38;&#xC790;&#xC5F4; &#xAC12;&#xB9CC;&#xC744; &#xD544;&#xC694;&#xB85C; &#xD558;&#xB294; &#xACBD;&#xC6B0;, &#xCF5C;&#xBC31;&#xC744; &#xD1B5;&#xD574; &#xC804;&#xB2EC;&#xBC1B;&#xAE30;&#xC5D0; &#xD3B8;&#xB9AC;&#xD558;&#xD55C; &#xD0C0;&#xC785;&#xC774; &#xC544;&#xB2D9;&#xB2C8;&#xB2E4;. Publisher&#xC758; output &#xC740; &#xACB0;&#xAD6D; &#xC2DC;&#xAC04;&#xC5D0; &#xB530;&#xB978; &#xC77C;&#xB828;&#xC758; &#xC694;&#xC18C;&#xC774;&#xBBC0;&#xB85C;, Combine &#xC740; <a href="https://developer.apple.com/documentation/combine/publisher/map(_:" target="_blank"><code>map(_:)</code></a>-99evh), <a href="https://developer.apple.com/documentation/combine/publisher/flatmap(maxpublishers:_:" target="_blank"><code>flatMap(maxPublishers:_:)</code></a>-3k7z5),  <a href="https://developer.apple.com/documentation/combine/publisher/reduce(_:_:" target="_blank"><code>reduce(_:_:)</code></a>)&#xC640; &#xAC19;&#xC774; &#xC21C;&#xC11C;&#xB97C; &#xC870;&#xC815;&#xD558;&#xB294; &#xC5F0;&#xC0B0;&#xC790;&#xB97C; &#xC81C;&#xACF5;&#xD569;&#xB2C8;&#xB2E4;. &#xC774;&#xB7EC;&#xD55C; &#xC5F0;&#xC0B0;&#xC790;&#xB4E4;&#xC758; &#xB3D9;&#xC791;&#xC740; Swift standard library &#xC758; &#xADF8;&#xAC83;&#xACFC; &#xBE44;&#xC2B7;&#xD569;&#xB2C8;&#xB2E4;. </p>
+<p><i><span style="color: #C0C0C0">To change the output type of the publisher, you add a <a href="https://developer.apple.com/documentation/combine/publisher/map(_:" target="_blank"><code>map(_:)</code></a>-99evh)operator whose closure returns a different type. In this case, you can get the notification&#x2019;s object as an <a href="https://developer.apple.com/documentation/appkit/nstextfield" target="_blank"><code>NSTextField</code></a>, and then get the field&#x2019;s <a href="https://developer.apple.com/documentation/appkit/nscontrol/1428950-stringvalue" target="_blank"><code>stringValue</code></a>.</span></i><br>Publisher &#xC758; Output &#xD0C0;&#xC785;&#xC744; &#xBCC0;&#xACBD;&#xD558;&#xAE30; &#xC704;&#xD574;&#xC11C;&#xB294;, &#xB2E4;&#xB978; &#xD0C0;&#xC785;&#xC744; &#xBC18;&#xD658;&#xD558;&#xB294; &#xD074;&#xB85C;&#xC800;&#xB97C; &#xAC16;&#xB294; <a href="https://developer.apple.com/documentation/combine/publisher/map(_:" target="_blank"><code>map(_:)</code></a>-99evh) &#xC5F0;&#xC0B0;&#xC790;&#xB97C; &#xCD94;&#xAC00;&#xD574;&#xC57C;&#xD569;&#xB2C8;&#xB2E4;. &#xD14D;&#xC2A4;&#xD2B8; &#xD544;&#xB4DC;&#xC758; &#xACBD;&#xC6B0;, Notification&#xC758; &#xAC1D;&#xCCB4;&#xB97C; <a href="https://developer.apple.com/documentation/appkit/nstextfield" target="_blank"><code>NSTextField</code></a> &#xD0C0;&#xC785;&#xC73C;&#xB85C; &#xAC00;&#xC838;&#xC628; &#xD6C4;, <a href="https://developer.apple.com/documentation/appkit/nscontrol/1428950-stringvalue" target="_blank"><code>stringValue</code></a> &#xB97C; &#xAEBC;&#xB0B4;&#xC62C; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<pre><code class="lang-swift"><span class="hljs-keyword">let</span> sub = <span class="hljs-type">NotificationCenter</span>.<span class="hljs-keyword">default</span>    
+    .publisher(<span class="hljs-keyword">for</span>: <span class="hljs-type">NSControl</span>.textDidChangeNotification, object: filterField)    
+    .<span class="hljs-built_in">map</span>( { ($<span class="hljs-number">0</span>.object <span class="hljs-keyword">as</span>! <span class="hljs-type">NSTextField</span>).stringValue } )    
+    .sink(receiveCompletion: { <span class="hljs-built_in">print</span> ($<span class="hljs-number">0</span>) },          
+                receiveValue: { <span class="hljs-built_in">print</span> ($<span class="hljs-number">0</span>) })
+</code></pre>
+<p><i><span style="color: #C0C0C0">After the publisher chain produces the type you want, replace <code>sink(receiveCompletion:receiveValue:)</code> with <a href="https://developer.apple.com/documentation/combine/publisher/assign(to:on:" target="_blank"><code>assign(to:on:)</code></a>). The following example takes the strings it receives from the publisher chain and assigns them to the <code>filterString</code> of a custom view model object:</span></i><br>Publisher &#xCCB4;&#xC778;&#xC740; &#xC6B0;&#xB9AC;&#xAC00; &#xC6D0;&#xD558;&#xB294; &#xD0C0;&#xC785;&#xC744; &#xB9CC;&#xB4E4;&#xC5B4;&#xB0B8; &#xC774;&#xD6C4;&#xC5D0;, <code>sink(receiveCompletion:receiveValue:)</code> &#xB97C; <a href="https://developer.apple.com/documentation/combine/publisher/assign(to:on:" target="_blank"><code>assign(to:on:)</code></a>) &#xB85C; &#xB300;&#xCCB4;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xC544;&#xB798;&#xC758; &#xC608;&#xC2DC;&#xB294; Publisher &#xCCB4;&#xC778;&#xC73C;&#xB85C;&#xBD80;&#xD130; &#xBB38;&#xC790;&#xC5F4;&#xC744; &#xBC1B;&#xACE0;, &#xC774;&#xB97C; view model &#xAC1D;&#xCCB4;&#xC758; <code>filterString</code> &#xC5D0; &#xD560;&#xB2F9;&#xD558;&#xACE0; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. </p>
+<pre><code class="lang-swift"><span class="hljs-keyword">let</span> sub = <span class="hljs-type">NotificationCenter</span>.<span class="hljs-keyword">default</span>    
+        .publisher(<span class="hljs-keyword">for</span>: <span class="hljs-type">NSControl</span>.textDidChangeNotification, object: filterField)    
+        .<span class="hljs-built_in">map</span>( { ($<span class="hljs-number">0</span>.object <span class="hljs-keyword">as</span>! <span class="hljs-type">NSTextField</span>).stringValue } )    
+        .assign(to: \<span class="hljs-type">MyViewModel</span>.filterString, on: myViewModel)
+</code></pre>
+<p><br></p>
+<h2 id="customize-publishers-with-operators"><i><span style="color: #C0C0C0">Customize Publishers with Operators</span></i></h2>
+<h2 id="&#xC5F0;&#xC0B0;&#xC790;&#xB97C;-&#xD65C;&#xC6A9;&#xD574;-publisher&#xB97C;-&#xC0AC;&#xC6A9;&#xC790;&#xC815;&#xC758;-&#xD574;&#xBD05;&#xC2DC;&#xB2E4;">&#xC5F0;&#xC0B0;&#xC790;&#xB97C; &#xD65C;&#xC6A9;&#xD574; Publisher&#xB97C; &#xC0AC;&#xC6A9;&#xC790;&#xC815;&#xC758; &#xD574;&#xBD05;&#xC2DC;&#xB2E4;.</h2>
+<p><i><span style="color: #C0C0C0">You can extend the <a href="https://developer.apple.com/documentation/combine/publisher" target="_blank"><code>Publisher</code></a> instance with an operator that performs actions that you&#x2019;d otherwise need to code manually. Here are three ways you could use operators to improve this event-processing chain:</span></i><br>&#xAE30;&#xC874;&#xC774;&#xB77C;&#xBA74; &#xC6B0;&#xB9AC;&#xAC00; &#xC218;&#xB3D9;&#xC73C;&#xB85C; &#xCF54;&#xB529;&#xD574;&#xC57C;&#xD558;&#xB294; &#xC791;&#xC5C5;&#xB4E4;&#xC744;, <a href="https://developer.apple.com/documentation/combine/publisher" target="_blank"><code>Publisher</code></a> &#xC778;&#xC2A4;&#xD134;&#xC2A4;&#xC5D0; &#xC5F0;&#xC0B0;&#xC790;&#xB97C; &#xD65C;&#xC6A9;&#xD574; &#xD655;&#xC7A5;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<ul>
+<li><i><span style="color: #C0C0C0">Rather than updating the view model with any string typed into the text field, you could use the <a href="https://developer.apple.com/documentation/combine/publisher/filter(_:" target="_blank"><code>filter(_:)</code></a>) operator to ignore input under a certain length or to reject non-alphanumeric characters.</span></i><br>  &#xD14D;&#xC2A4;&#xD2B8; &#xD544;&#xB4DC;&#xC5D0; &#xC785;&#xB825;&#xB41C; &#xBB38;&#xC790;&#xC5F4;&#xB85C; view model&#xC744; &#xC5C5;&#xB370;&#xC774;&#xD2B8;&#xD558;&#xB294; &#xB300;&#xC2E0;, <a href="https://developer.apple.com/documentation/combine/publisher/filter(_:" target="_blank"><code>filter(_:)</code></a>) &#xC5F0;&#xC0B0;&#xC790;&#xB97C; &#xD65C;&#xC6A9;&#xD574; &#xD2B9;&#xC815; &#xAE38;&#xC774; &#xBBF8;&#xB9CC;&#xC758; &#xC785;&#xB825;&#xAC12;&#xC744; &#xBB34;&#xC2DC;&#xD558;&#xAC70;&#xB098;, &#xC601;&#xBB38;/&#xC22B;&#xC790;&#xAC00; &#xC544;&#xB2CC; &#xBB38;&#xC790;&#xB97C; &#xAC70;&#xBD80;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</li>
+<li><i><span style="color: #C0C0C0">If the filtering operation is expensive &#x2014; for example, if it&#x2019;s querying a large database &#x2014; you might want to wait for the user to stop typing. For this, the <a href="https://developer.apple.com/documentation/combine/publisher/debounce(for:scheduler:options:" target="_blank"><code>debounce(for:scheduler:options:)</code></a>) operator lets you set a minimum period of time that must elapse before a publisher emits an event. The <a href="https://developer.apple.com/documentation/foundation/runloop" target="_blank"><code>RunLoop</code></a> class provides conveniences for specifying the time delay in seconds or milliseconds.</span></i><br>  &#xBCC0;&#xBCC4; &#xC791;&#xC5C5;&#xC774; &#xC624;&#xB798; &#xAC78;&#xB9AC;&#xB294; &#xACBD;&#xC6B0; (&#xC608;&#xB97C; &#xB4E4;&#xC5B4;, &#xB300;&#xADDC;&#xBAA8;&#xC758; &#xB370;&#xC774;&#xD130;&#xBCA0;&#xC774;&#xC2A4;&#xB97C; &#xC120;&#xBCC4;&#xD558;&#xB294; &#xACBD;&#xC6B0;) &#xC0AC;&#xC6A9;&#xC790;&#xAC00; &#xD0C0;&#xC774;&#xD551;&#xC744; &#xBA48;&#xCD9C; &#xB54C;&#xAE4C;&#xC9C0; &#xC7A0;&#xC2DC; &#xAE30;&#xB2E4;&#xB9AC;&#xAE30;&#xB97C; &#xC6D0;&#xD558;&#xAE30;&#xB3C4; &#xD569;&#xB2C8;&#xB2E4;. <a href="https://developer.apple.com/documentation/combine/publisher/debounce(for:scheduler:options:" target="_blank"><code>debounce(for:scheduler:options:)</code></a>) &#xC5F0;&#xC0B0;&#xC790;&#xB97C; &#xD65C;&#xC6A9;&#xD558;&#xBA74;, Publisher&#xAC00; &#xC774;&#xBCA4;&#xD2B8;&#xB97C; &#xBC1C;&#xC0DD;&#xC2DC;&#xD0A4;&#xAE30; &#xC804;&#xC5D0; &#xACBD;&#xACFC;&#xD574;&#xC57C;&#xD558;&#xB294; &#xCD5C;&#xACE0; &#xC2DC;&#xAC04;&#xC744; &#xC124;&#xC815;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.  <a href="https://developer.apple.com/documentation/foundation/runloop" target="_blank"><code>RunLoop</code></a> &#xD074;&#xB798;&#xC2A4;&#xB294; &#xCD08;&#xB2E8;&#xC704; &#xD639;&#xC740; &#xBC00;&#xB9AC;&#xCD08;&#xB2E8;&#xC704;&#xC758; &#xC9C0;&#xC5F0; &#xC2DC;&#xAC04;&#xC744; &#xC27D;&#xAC8C; &#xC9C0;&#xC815;&#xD560; &#xC218; &#xC788;&#xB3C4;&#xB85D; &#xB3D5;&#xC2B5;&#xB2C8;&#xB2E4;.</li>
+<li><i><span style="color: #C0C0C0">If the results update the UI, you can deliver callbacks to the main thread by calling the <a href="https://developer.apple.com/documentation/combine/publisher/receive(on:options:" target="_blank"><code>receive(on:options:)</code></a>) method. By specifying the <a href="https://developer.apple.com/documentation/combine/scheduler" target="_blank"><code>Scheduler</code></a> instance provided by the <a href="https://developer.apple.com/documentation/foundation/runloop" target="_blank"><code>RunLoop</code></a> class as the first parameter, you tell Combine to call your subscriber on the main run loop.</span></i><br>  &#xB9CC;&#xC57D; &#xACB0;&#xACFC;&#xBB3C;&#xC774; UI&#xB97C; &#xC5C5;&#xB370;&#xC774;&#xD2B8;&#xD574;&#xC57C;&#xD55C;&#xB2E4;&#xBA74;, <a href="https://developer.apple.com/documentation/combine/publisher/receive(on:options:" target="_blank"><code>receive(on:options:)</code></a>) &#xBA54;&#xC11C;&#xB4DC;&#xB97C; &#xD638;&#xCD9C;&#xD574; &#xCF5C;&#xBC31;&#xD568;&#xC218;&#xB97C; &#xBA54;&#xC778; &#xC2A4;&#xB808;&#xB4DC;&#xB85C; &#xC62E;&#xAE38; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. <a href="https://developer.apple.com/documentation/foundation/runloop" target="_blank"><code>RunLoop</code></a> &#xD074;&#xB798;&#xC2A4;&#xC5D0;&#xC11C; &#xC81C;&#xACF5;&#xD558;&#xB294;  <a href="https://developer.apple.com/documentation/combine/scheduler" target="_blank"><code>Scheduler</code></a> &#xC778;&#xC2A4;&#xD134;&#xC2A4;&#xB97C; &#xCCAB;&#xBC88;&#xC9F8; &#xB9E4;&#xAC1C;&#xBCC0;&#xC218;&#xB85C; &#xC9C0;&#xC815;&#xD568;&#xC73C;&#xB85C;&#xC368;, subscriber&#xB97C; &#xBA54;&#xC778; &#xB7F0;&#xB8E8;&#xD504;&#xC5D0;&#xC11C; &#xD638;&#xCD9C;&#xD558;&#xB3C4;&#xB85D; &#xC9C0;&#xC2DC;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</li>
+</ul>
+<p><i><span style="color: #C0C0C0">The resulting publisher declaration follows:</span></i><br>&#xC120;&#xC5B8;&#xB41C; Publisher&#xB294; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<pre><code class="lang-swift"><span class="hljs-keyword">let</span> sub = <span class="hljs-type">NotificationCenter</span>.<span class="hljs-keyword">default</span>    
+        .publisher(<span class="hljs-keyword">for</span>: <span class="hljs-type">NSControl</span>.textDidChangeNotification, object: filterField)    
+        .<span class="hljs-built_in">map</span>( { ($<span class="hljs-number">0</span>.object <span class="hljs-keyword">as</span>! <span class="hljs-type">NSTextField</span>).stringValue } )    
+        .<span class="hljs-built_in">filter</span>( { $<span class="hljs-number">0</span>.unicodeScalars.allSatisfy({<span class="hljs-type">CharacterSet</span>.alphanumerics.<span class="hljs-built_in">contains</span>($<span class="hljs-number">0</span>)}) } )    
+        .debounce(<span class="hljs-keyword">for</span>: .milliseconds(<span class="hljs-number">500</span>), scheduler: <span class="hljs-type">RunLoop</span>.main)    
+        .receive(on: <span class="hljs-type">RunLoop</span>.main)    
+        .assign(to:\<span class="hljs-type">MyViewModel</span>.filterString, on: myViewModel)
+</code></pre>
+<p><br></p>
+<h2 id="cancel-publishing-when-desired"><i><span style="color: #C0C0C0">Cancel Publishing when Desired</span></i></h2>
+<h2 id="&#xC6D0;&#xD558;&#xB294;-&#xC2DC;&#xC810;&#xC5D0;-&#xBC1C;&#xD589;&#xC744;-&#xCDE8;&#xC18C;&#xD574;&#xBD05;&#xC2DC;&#xB2E4;">&#xC6D0;&#xD558;&#xB294; &#xC2DC;&#xC810;&#xC5D0; &#xBC1C;&#xD589;&#xC744; &#xCDE8;&#xC18C;&#xD574;&#xBD05;&#xC2DC;&#xB2E4;.</h2>
+<p><i><span style="color: #C0C0C0">A publisher continues to emit elements until it completes normally or fails. If you no longer want to subscribe to the publisher, you can cancel the subscription. The subscriber types created by <code>sink(receiveCompletion:receiveValue:)</code> and <a href="https://developer.apple.com/documentation/combine/publisher/assign(to:on:" target="_blank"><code>assign(to:on:)</code></a>) both implement the <a href="https://developer.apple.com/documentation/combine/cancellable" target="_blank"><code>Cancellable</code></a> protocol, which provides a <a href="https://developer.apple.com/documentation/combine/cancellable/cancel(" target="_blank"><code>cancel()</code></a>) method:</span></i><br>Publisher &#xB294; &#xC791;&#xC5C5;&#xC774; &#xC644;&#xB8CC;&#xB418;&#xAC70;&#xB098;, &#xC2E4;&#xD328;&#xD560;&#xB54C;&#xAE4C;&#xC9C0; &#xC694;&#xC18C;&#xB4E4;&#xC744; &#xACC4;&#xC18D;&#xC801;&#xC73C;&#xB85C; &#xB0B4;&#xBCF4;&#xB0C5;&#xB2C8;&#xB2E4;. &#xB9CC;&#xC57D;, &#xB354;&#xC774;&#xC0C1; Publisher&#xB97C; &#xAD6C;&#xB3C5;&#xD558;&#xACE0; &#xC2F6;&#xC9C0; &#xC54A;&#xB2E4;&#xBA74;, &#xAD6C;&#xB3C5;&#xC744; &#xCDE8;&#xC18C;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. Subscriber &#xD0C0;&#xC785;&#xB4E4;&#xC740; <a href="https://developer.apple.com/documentation/combine/cancellable" target="_blank"><code>Cancellable</code></a> &#xD504;&#xB85C;&#xD1A0;&#xCF5C;&#xC744; &#xAD6C;&#xD604;&#xD558;&#xB294;  <code>sink(receiveCompletion:receiveValue:)</code> &#xB098; <a href="https://developer.apple.com/documentation/combine/publisher/assign(to:on:" target="_blank"><code>assign(to:on:)</code></a>)  &#xBA54;&#xC11C;&#xB4DC;&#xC5D0; &#xC758;&#xD574; &#xC0DD;&#xC131;&#xB429;&#xB2C8;&#xB2E4;. Cancellable &#xD504;&#xB85C;&#xD1A0;&#xCF5C;&#xC740;  <a href="https://developer.apple.com/documentation/combine/cancellable/cancel(" target="_blank"><code>cancel()</code></a>) &#xBA54;&#xC11C;&#xB4DC;&#xB97C; &#xC81C;&#xACF5;&#xD558;&#xACE0; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<pre><code class="lang-swift">sub?.cancel()
+</code></pre>
+<p><i><span style="color: #C0C0C0">If you create a custom <a href="https://developer.apple.com/documentation/combine/subscriber" target="_blank"><code>Subscriber</code></a>, the publisher sends a <a href="https://developer.apple.com/documentation/combine/subscription" target="_blank"><code>Subscription</code></a> object when you first subscribe to it. Store this subscription, and then call its <a href="https://developer.apple.com/documentation/combine/cancellable/cancel(" target="_blank"><code>cancel()</code></a>) method when you want to cancel publishing. When you create a custom subscriber, you should implement the <a href="https://developer.apple.com/documentation/combine/cancellable" target="_blank"><code>Cancellable</code></a> protocol, and have your <a href="https://developer.apple.com/documentation/combine/cancellable/cancel(" target="_blank"><code>cancel()</code></a>) implementation forward the call to the stored subscription.</span></i><br>&#xB9CC;&#xC57D; &#xB2F9;&#xC2E0;&#xC774; <a href="https://developer.apple.com/documentation/combine/subscriber" target="_blank"><code>Subscriber</code></a> &#xB97C; &#xC9C1;&#xC811; &#xC0DD;&#xC131;&#xD55C;&#xB2E4;&#xBA74;, Publisher&#xB294; &#xC790;&#xC2E0;&#xC774; &#xCC98;&#xC74C; &#xAD6C;&#xB3C5;&#xB418;&#xB294; &#xC2DC;&#xC810;&#xC5D0; <a href="https://developer.apple.com/documentation/combine/subscription" target="_blank"><code>Subscription</code></a> &#xAC1D;&#xCCB4;&#xB97C; &#xC804;&#xB2EC;&#xD569;&#xB2C8;&#xB2E4;. &#xC804;&#xB2EC;&#xB41C; <code>Subscription</code> &#xAC1D;&#xCCB4;&#xB97C; &#xC800;&#xC7A5;&#xD55C; &#xD6C4;, &#xBC1C;&#xD589;&#xC744; &#xCDE8;&#xC18C;&#xD558;&#xACE0; &#xC2F6;&#xC744; &#xB54C; <a href="https://developer.apple.com/documentation/combine/cancellable/cancel(" target="_blank"><code>cancel()</code></a>) &#xBA54;&#xC11C;&#xB4DC;&#xB97C; &#xD638;&#xCD9C;&#xD574;&#xBD05;&#xC2DC;&#xB2E4;. &#xC0AC;&#xC6A9;&#xC790; &#xC815;&#xC758; Subscriber&#xB97C; &#xC9C1;&#xC811; &#xC0DD;&#xC131;&#xD560; &#xB54C;, &#xC6B0;&#xB9AC;&#xB294; &#xBC18;&#xB4DC;&#xC2DC; <a href="https://developer.apple.com/documentation/combine/cancellable" target="_blank"><code>Cancellable</code></a> &#xD504;&#xB85C;&#xD1A0;&#xCF5C;&#xC744; &#xCC44;&#xD0DD;&#xD574; &#xAD6C;&#xD604;&#xD574;&#xC57C;&#xD569;&#xB2C8;&#xB2E4;. &#xADF8;&#xB9AC;&#xACE0; &#xAD6C;&#xD604;&#xD55C; <a href="https://developer.apple.com/documentation/combine/cancellable/cancel(" target="_blank"><code>cancel()</code></a>) &#xBA54;&#xC11C;&#xB4DC;&#xAC00; &#xC800;&#xC7A5;&#xB41C; subscription&#xC73C;&#xB85C; &#xD638;&#xCD9C;&#xC744; &#xC804;&#xB2EC;&#xD558;&#xB3C4;&#xB85D; &#xD574;&#xC57C;&#xD569;&#xB2C8;&#xB2E4;.</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="Determining If CloudKit Is Right for Your App.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: Determining If CloudKit Is Right for Your App">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Receiving and Handling Events with Combine","level":"2.2","depth":1,"previous":{"title":"Determining If CloudKit Is Right for Your App","level":"2.1","depth":1,"path":"articles/Determining If CloudKit Is Right for Your App.md","ref":"articles/Determining If CloudKit Is Right for Your App.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"INTRO.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"articles/Receiving and Handling Events with Combine.md","mtime":"2022-04-08T08:50:54.891Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-04-08T08:51:07.819Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

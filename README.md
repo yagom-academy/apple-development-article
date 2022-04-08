@@ -94,7 +94,7 @@ Apple Developer Documents 문서 중에서 `Article` 로 분류된 모든 페이
 - **작업할 때 반드시 [`Wiki`](https://github.com/yagom-academy/swift-doc-kor/wiki/용어-위키) 를 참고하여 정확하고 통일된 용어를 사용합니다.**
 - 내가 작성(번역)한 문장을 소리내어 읽어보았을 때 숨이 차거나 부자연스럽다면 문장을 짧게 끊어봐도 좋습니다.
 - API Design Guidelines 문서 작업시 [`API Design Guidelines 번역 가이드 문서`](https://github.com/yagom-academy/swift-doc-kor/blob/main/guide/API%20Design%20Guidelines%20번역%20가이드.md) 를 참고해주세요.
-- Apple Development Article 문서 작업시 ['Apple Development Article 번역 가이드 문서']() 를 참고해주세요.
+- Apple Development Article 문서 작업시 ['Apple Development Article 번역 가이드 문서'](guide/Apple Development Article 번역 가이드.md) 를 참고해주세요.
 
 <br>
 

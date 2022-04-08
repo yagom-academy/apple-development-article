@@ -3,9 +3,5 @@
 
 ### Articles
 
-* [Determining If CloudKit Is Right for Your App](Determining If CloudKit Is Right for Your App.md)
-* [Conventions](APIDesignGuidelines/Conventions.md)
-* [Special Instructions](APIDesignGuidelines/Special_Instructions.md)
-
----
-* [Revision History](APIDesignGuidelines/Revision_History.md)
+* [Determining If CloudKit Is Right for Your App](articles/Determining If CloudKit Is Right for Your App.md)
+* [Receiving and Handling Events with Combine](articles/Receiving and Handling Events with Combine.md)
