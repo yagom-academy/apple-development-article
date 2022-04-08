@@ -1,0 +1,320 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Determining If CloudKit Is Right for Your App · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="APIDesignGuidelines/Conventions.md" />
+    
+    
+    <link rel="prev" href="./" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Articles</li>
+        
+        
+    
+        <li class="chapter active" data-level="2.1" data-path="Determining If CloudKit Is Right for Your App.html">
+            
+                <a href="Determining If CloudKit Is Right for Your App.html">
+            
+                    
+                    Determining If CloudKit Is Right for Your App
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="APIDesignGuidelines/Conventions.md">
+            
+                <span>
+            
+                    
+                    Conventions
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="APIDesignGuidelines/Special_Instructions.md">
+            
+                <span>
+            
+                    
+                    Special Instructions
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="3.1" data-path="APIDesignGuidelines/Revision_History.md">
+            
+                <span>
+            
+                    
+                    Revision History
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="." >Determining If CloudKit Is Right for Your App</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="determining-if-cloudkit-is-right-for-your-app"><i><span style="color: #C0C0C0">Determining If CloudKit Is Right for Your App</span></i></h1>
+<h1 id="cloudkit&#xC774;-&#xB2F9;&#xC2E0;&#xC758;-&#xC571;&#xC5D0;-&#xC801;&#xD569;&#xD55C;&#xC9C0;-&#xACB0;&#xC815;&#xD558;&#xC138;&#xC694;">CloudKit&#xC774; &#xB2F9;&#xC2E0;&#xC758; &#xC571;&#xC5D0; &#xC801;&#xD569;&#xD55C;&#xC9C0; &#xACB0;&#xC815;&#xD558;&#xC138;&#xC694;.</h1>
+<p><i><span style="color: #C0C0C0">Explore various ways of storing your app&#x2019;s data in iCloud.</span></i><br>iCloud&#xC5D0; &#xC571;&#xC758; &#xB370;&#xC774;&#xD130;&#xB97C; &#xC800;&#xC7A5;&#xD558;&#xB294; &#xB2E4;&#xC591;&#xD55C; &#xBC29;&#xBC95;&#xC744; &#xC0B4;&#xD3B4;&#xBD05;&#xC2DC;&#xB2E4;.</p>
+<hr>
+<h2 id="overview"><i><span style="color: #C0C0C0">Overview</span></i></h2>
+<h2 id="&#xAC1C;&#xC694;">&#xAC1C;&#xC694;</h2>
+<p><i><span style="color: #C0C0C0">There are several ways you can store app and user data in iCloud. This article describes the various options and their suitability for your app. Each option has trade-offs in complexity, access to iCloud features, and control over how your data persists.</span></i><br>iCloud&#xC5D0; &#xC571;&#xACFC; &#xC0AC;&#xC6A9;&#xC790;&#xC758; &#xC815;&#xBCF4;&#xB97C; &#xC800;&#xC7A5;&#xD560; &#xC218; &#xC788;&#xB294; &#xB2E4;&#xC591;&#xD55C; &#xBC29;&#xBC95;&#xC774; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xC774; &#xC544;&#xD2F0;&#xD074;&#xC740; &#xB2F9;&#xC2E0;&#xC758; &#xC571;&#xC5D0; &#xB300;&#xD55C; &#xB2E4;&#xC591;&#xD55C; &#xC635;&#xC158;&#xB4E4;&#xACFC; &#xC801;&#xD569;&#xC131;&#xC5D0; &#xB300;&#xD574;&#xC11C; &#xC124;&#xBA85;&#xD569;&#xB2C8;&#xB2E4;. &#xAC01; &#xC635;&#xC158;&#xC5D0;&#xB294; &#xBCF5;&#xC7A1;&#xC131;, iCloud &#xAE30;&#xB2A5; &#xC5D1;&#xC138;&#xC2A4;, &#xB370;&#xC774;&#xD130; &#xC9C0;&#xC18D; &#xBC29;&#xC2DD; &#xC81C;&#xC5B4; &#xB4F1;&#xC758; trade-off&#xAC00; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p><i><span style="color: #C0C0C0">Consider the following approaches before you choose CloudKit.</span></i><br>CloudKit&#xC744; &#xC120;&#xD0DD;&#xD558;&#xAE30; &#xC804;&#xC5D0; &#xB2E4;&#xC74C; &#xBC29;&#xBC95;&#xB4E4;&#xC744; &#xACE0;&#xB824;&#xD558;&#xC138;&#xC694;.</p>
+<p><br></p>
+<h2 id="store-data-as-files"><i><span style="color: #C0C0C0">Store Data as Files</span></i></h2>
+<h2 id="&#xD30C;&#xC77C;&#xB85C;-&#xB370;&#xC774;&#xD130;-&#xC800;&#xC7A5;&#xD558;&#xAE30;">&#xD30C;&#xC77C;&#xB85C; &#xB370;&#xC774;&#xD130; &#xC800;&#xC7A5;&#xD558;&#xAE30;</h2>
+<p><i><span style="color: #C0C0C0">If your app stores data as files and you want those files to sync across devices, you can use iCloud document storage. This storage option gives you granular control over which files to sync. Choosing to store your data as files affords the least control over how your data persists to iCloud, but is relatively simple.</span></i><br>&#xB9CC;&#xC57D; &#xC571;&#xC774; &#xB370;&#xC774;&#xD130;&#xB97C; &#xD30C;&#xC77C;&#xB85C; &#xC800;&#xC7A5;&#xD558;&#xAC70;&#xB098; &#xD30C;&#xC77C;&#xB4E4;&#xC744; &#xAE30;&#xAE30; &#xAC04;&#xC5D0; &#xB3D9;&#xAE30;&#xD654;&#xC2DC;&#xD0A4;&#xACE0; &#xC2F6;&#xB2E4;&#xBA74;, iCloud document &#xC800;&#xC7A5;&#xC18C;&#xB97C; &#xC0AC;&#xC6A9;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xC774; &#xC800;&#xC7A5;&#xC18C; &#xC635;&#xC158;&#xC744; &#xC0AC;&#xC6A9;&#xD558;&#xBA74; &#xB3D9;&#xAE30;&#xD654;&#xD560; &#xD30C;&#xC77C;&#xC744; &#xC138;&#xBC00;&#xD558;&#xAC8C; &#xC81C;&#xC5B4;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xB370;&#xC774;&#xD130;&#xB97C; &#xD30C;&#xC77C;&#xB85C; &#xC800;&#xC7A5;&#xD558;&#xB294; &#xAC83;&#xC744; &#xC120;&#xD0DD;&#xD558;&#xBA74; &#xB370;&#xC774;&#xD130;&#xAC00; iCloud&#xC5D0; &#xC720;&#xC9C0;&#xB418;&#xB294; &#xBC29;&#xC2DD;&#xC744; &#xAC00;&#xC7A5; &#xC801;&#xAC8C; &#xC81C;&#xC5B4;&#xD560; &#xC218; &#xC788;&#xC9C0;&#xB9CC; &#xBE44;&#xAD50;&#xC801;&#xC73C;&#xB85C; &#xAC04;&#xB2E8;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<p><i><span style="color: #C0C0C0">To use iCloud document storage, use <a href="https://developer.apple.com/documentation/foundation/filemanager/1411653-url" target="_blank">url(forUbiquityContainerIdentifier:)</a> in <a href="https://developer.apple.com/documentation/foundation/filemanager" target="_blank">FileManager</a>. For more information, see <a href="https://developer.apple.com/library/archive/documentation/General/Conceptual/iCloudDesignGuide/Chapters/DesigningForDocumentsIniCloud.html#//apple_ref/doc/uid/TP40012094-CH2" target="_blank">Designing for Documents in iCloud</a>.</span></i><br>iCloud document &#xC800;&#xC7A5;&#xC18C;&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xB824;&#xBA74;, <a href="https://developer.apple.com/documentation/foundation/filemanager" target="_blank">FileManager</a>&#xC758; <a href="https://developer.apple.com/documentation/foundation/filemanager/1411653-url" target="_blank">url(forUbiquityContainerIdentifier:)</a>&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xC138;&#xC694;. &#xC815;&#xBCF4;&#xB97C; &#xB354; &#xC5BB;&#xACE0; &#xC2F6;&#xB2E4;&#xBA74; <a href="https://developer.apple.com/library/archive/documentation/General/Conceptual/iCloudDesignGuide/Chapters/DesigningForDocumentsIniCloud.html#//apple_ref/doc/uid/TP40012094-CH2" target="_blank">Designing for Documents in iCloud</a>&#xB97C; &#xCC38;&#xACE0;&#xD558;&#xC138;&#xC694;.</p>
+<p><i><span style="color: #C0C0C0">If your files reside on a single device, you can save them using the nonubiquity methods of <a href="https://developer.apple.com/documentation/foundation/filemanager" target="_blank">FileManager</a>. When a user enables iCloud Backup, a snapshot of these files uploads to iCloud. The user can then restore a device using that snapshot. Note that your app&#x2019;s data contributes to the overall device backup size. A large total backup size can lead to lengthy restore times. See <a href="https://developer.apple.com/library/archive/releasenotes/General/WhatsNewIniOS/Articles/iOS5.html#//apple_ref/doc/uid/TP30915195-SW36" target="_blank">iCloud Backup</a>.</span></i><br>&#xB9CC;&#xC57D; &#xD30C;&#xC77C;&#xC774; &#xD558;&#xB098;&#xC758; &#xAE30;&#xAE30;&#xC5D0; &#xC788;&#xB2E4;&#xBA74;, <a href="https://developer.apple.com/documentation/foundation/filemanager" target="_blank">FileManager</a>&#xC758; nonubiquity &#xBA54;&#xC11C;&#xB4DC;&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xC5EC; &#xC800;&#xC7A5;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xC0AC;&#xC6A9;&#xC790;&#xAC00; iCloud &#xBC31;&#xC5C5;&#xC744; &#xC774;&#xC6A9;&#xD560; &#xC218; &#xC788;&#xC744; &#xB54C;, &#xC774; &#xD30C;&#xC77C;&#xB4E4;&#xC758; &#xC2A4;&#xB0C5;&#xC0F7;&#xC774; iCloud&#xC5D0; &#xC5C5;&#xB85C;&#xB4DC; &#xB429;&#xB2C8;&#xB2E4;. &#xC0AC;&#xC6A9;&#xC790;&#xB294; &#xC774; &#xC2A4;&#xB0C5;&#xC0F7;&#xC744; &#xAC00;&#xC9C0;&#xACE0; &#xAE30;&#xAE30;&#xC5D0; &#xB2E4;&#xC2DC; &#xC800;&#xC7A5;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xC571;&#xC758; &#xB370;&#xC774;&#xD130;&#xB294; &#xC804;&#xCCB4; &#xAE30;&#xAE30;&#xC758; &#xBC31;&#xC5C5; &#xD06C;&#xAE30;&#xC5D0; &#xC601;&#xD5A5;&#xC744; &#xBBF8;&#xCE69;&#xB2C8;&#xB2E4;. &#xBC31;&#xC5C5;&#xD560; &#xB370;&#xC774;&#xD130;&#xAC00; &#xB9CE;&#xC544;&#xC9C0;&#xBA74; &#xBCF5;&#xC6D0;&#xD558;&#xB294;&#xB370;&#xC5D0; &#xC2DC;&#xAC04;&#xC774; &#xC624;&#xB798;&#xAC78;&#xB9BD;&#xB2C8;&#xB2E4;. <a href="https://developer.apple.com/library/archive/releasenotes/General/WhatsNewIniOS/Articles/iOS5.html#//apple_ref/doc/uid/TP30915195-SW36" target="_blank">iCloud Backup</a>&#xC744; &#xCC38;&#xACE0;&#xD558;&#xC138;&#xC694;.</p>
+<p><br></p>
+<h2 id="store-unstructured-data-that-syncs-across-devices"><i><span style="color: #C0C0C0">Store Unstructured Data That Syncs Across Devices</span></i></h2>
+<h2 id="&#xAE30;&#xAE30;-&#xAC04;&#xC5D0;-&#xB3D9;&#xAE30;&#xD654;&#xB418;&#xB294;-&#xAD6C;&#xC870;&#xD654;&#xB418;&#xC9C0;-&#xC54A;&#xC740;-&#xB370;&#xC774;&#xD130;-&#xC800;&#xC7A5;&#xD558;&#xAE30;">&#xAE30;&#xAE30; &#xAC04;&#xC5D0; &#xB3D9;&#xAE30;&#xD654;&#xB418;&#xB294; &#xAD6C;&#xC870;&#xD654;&#xB418;&#xC9C0; &#xC54A;&#xC740; &#xB370;&#xC774;&#xD130; &#xC800;&#xC7A5;&#xD558;&#xAE30;</h2>
+<p><i><span style="color: #C0C0C0">If you store a small number of key-value pairs that sync across the user&#x2019;s devices, you can use iCloud key-value storage. This approach is simple but doesn&#x2019;t provide control over how data persists, and it limits the kind of data you can store.</span></i><br>&#xB9CC;&#xC57D; &#xC0AC;&#xC6A9;&#xC790;&#xC758; &#xAE30;&#xAE30; &#xAC04;&#xC5D0; &#xB3D9;&#xAE30;&#xD654;&#xC2DC;&#xD0AC; &#xC801;&#xC740; &#xC218;&#xC758; &#xD0A4;-&#xAC12;&#xB4E4;&#xC744; &#xC800;&#xC7A5;&#xD55C;&#xB2E4;&#xBA74;, iCloud key-value &#xC800;&#xC7A5;&#xC18C;&#xB97C; &#xC0AC;&#xC6A9;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xAC04;&#xB2E8;&#xD55C; &#xBC29;&#xBC95;&#xC774;&#xC9C0;&#xB9CC; &#xB370;&#xC774;&#xD130;&#xAC00; &#xC720;&#xC9C0;&#xB418;&#xB294; &#xBC29;&#xBC95;&#xC5D0; &#xB300;&#xD55C; &#xC81C;&#xC5B4;&#xB97C; &#xC81C;&#xACF5;&#xD558;&#xC9C0;&#xB294; &#xC54A;&#xACE0;, &#xC800;&#xC7A5;&#xD560; &#xC218; &#xC788;&#xB294; &#xB370;&#xC774;&#xD130; &#xC885;&#xB958;&#xC5D0; &#xC81C;&#xD55C;&#xC774; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p><i><span style="color: #C0C0C0">You can store up to 1,024 pairs of string keys to scalar values. The value types supported are Bool, numeric types, String, Date, Data, Array, and Dictionary. You might use this solution to store a user&#x2019;s preferences or game state as property lists, for example. For more information, see <a href="https://developer.apple.com/documentation/foundation/nsubiquitouskeyvaluestore" target="_blank">NSUbiquitousKeyValueStore</a>.</span></i><br>1024&#xAC1C;&#xAE4C;&#xC9C0; &#xBB38;&#xC790;&#xC5F4; &#xD0A4;&#xC640; &#xC2A4;&#xCE7C;&#xB77C; &#xAC12;&#xC758; &#xC9DD;&#xC744; &#xC800;&#xC7A5;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xAC12; &#xD0C0;&#xC785;&#xC73C;&#xB85C;&#xB294; Bool, &#xC22B;&#xC790;, String, Date, Data, Array, Dictionary &#xD0C0;&#xC785;&#xB4E4;&#xC744; &#xC9C0;&#xC6D0;&#xD569;&#xB2C8;&#xB2E4;. &#xC544;&#xB9C8; &#xC0AC;&#xC6A9;&#xC790;&#xC758; &#xC124;&#xC815;&#xC774;&#xB098; &#xD504;&#xB85C;&#xD37C;&#xD2F0; &#xB9AC;&#xC2A4;&#xD2B8;&#xB85C; &#xC800;&#xC7A5;&#xB41C; &#xAC8C;&#xC784;&#xC758; &#xC0C1;&#xD0DC; &#xB4F1;&#xC744; &#xC800;&#xC7A5;&#xD558;&#xB294;&#xB370;&#xC5D0; &#xC0AC;&#xC6A9;&#xD558;&#xAC8C; &#xB420; &#xAC83;&#xC785;&#xB2C8;&#xB2E4;. &#xC815;&#xBCF4;&#xB97C; &#xB354; &#xC5BB;&#xACE0; &#xC2F6;&#xB2E4;&#xBA74; <a href="https://developer.apple.com/documentation/foundation/nsubiquitouskeyvaluestore" target="_blank">NSUbiquitousKeyValueStore</a>&#xB97C; &#xCC38;&#xACE0;&#xD558;&#xC138;&#xC694;.</p>
+<p><br></p>
+<h2 id="store-objects-that-sync-across-devices"><i><span style="color: #C0C0C0">Store Objects That Sync Across Devices</span></i></h2>
+<h2 id="&#xAE30;&#xAE30;-&#xAC04;&#xC5D0;-&#xB3D9;&#xAE30;&#xD654;&#xB418;&#xB294;-&#xAC1D;&#xCCB4;-&#xC800;&#xC7A5;&#xD558;&#xAE30;">&#xAE30;&#xAE30; &#xAC04;&#xC5D0; &#xB3D9;&#xAE30;&#xD654;&#xB418;&#xB294; &#xAC1D;&#xCCB4; &#xC800;&#xC7A5;&#xD558;&#xAE30;</h2>
+<p><i><span style="color: #C0C0C0">If you store your data as objects and relationships, consider using Core Data with CloudKit, or using CloudKit directly. Using CloudKit directly is more complex, but it gives you full control over the data you store, including the design and management of your container&#x2019;s schema. Use this option if you want direct access to iCloud storage features, such as private data sharing, or if you want to manage local data caching. With a local cache of data, your app can reduce the number of calls to iCloud and can access cached data offline.</span></i><br>&#xB9CC;&#xC57D; &#xAC1D;&#xCCB4;&#xC640; &#xAD00;&#xACC4;&#xB85C; &#xB370;&#xC774;&#xD130;&#xB97C; &#xC800;&#xC7A5;&#xD560; &#xACBD;&#xC6B0;, CloudKit&#xACFC; Core Data&#xB97C; &#xD568;&#xAED8; &#xC0AC;&#xC6A9;&#xD558;&#xAC70;&#xB098;, CloudKit&#xC744; &#xC9C1;&#xC811;&#xC801;&#xC73C;&#xB85C; &#xC0AC;&#xC6A9;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. CloudKit&#xC744; &#xC9C1;&#xC811;&#xC801;&#xC73C;&#xB85C; &#xC0AC;&#xC6A9;&#xD558;&#xB294; &#xAC83;&#xC740; &#xBCF5;&#xC7A1;&#xD558;&#xC9C0;&#xB9CC; &#xB370;&#xC774;&#xD130;&#xB97C; &#xC800;&#xC7A5;&#xD558;&#xB294;&#xB370;&#xC5D0; &#xC788;&#xC5B4;&#xC11C; &#xB514;&#xC790;&#xC778;&#xC774;&#xB098; &#xCEE8;&#xD14C;&#xC774;&#xB108;&#xC758; &#xC2A4;&#xD0A4;&#xB9C8; &#xAD00;&#xB9AC; &#xB4F1; &#xBAA8;&#xB4E0; &#xAD8C;&#xD55C;&#xC744; &#xC5BB;&#xC744; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xAC1C;&#xC778; &#xC815;&#xBCF4;&#xB97C; &#xACF5;&#xC720;&#xD558;&#xAC70;&#xB098; &#xB85C;&#xCEEC; &#xB370;&#xC774;&#xD130; &#xCE90;&#xC2F1;&#xC744; &#xAD00;&#xB9AC;&#xD558;&#xACE0; &#xC2F6;&#xC744; &#xB54C; iCloud &#xC800;&#xC7A5;&#xC18C; &#xAE30;&#xB2A5;&#xC5D0; &#xC9C1;&#xC811; &#xC811;&#xADFC;&#xD558;&#xACE0; &#xC2F6;&#xB2E4;&#xBA74; &#xC774; &#xC635;&#xC158;&#xC744; &#xC0AC;&#xC6A9;&#xD558;&#xC138;&#xC694;. &#xB85C;&#xCEEC; &#xB370;&#xC774;&#xD130; &#xCE90;&#xC2DC;&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xBA74; iCloud &#xD638;&#xCD9C; &#xC218;&#xB97C; &#xC904;&#xC774;&#xACE0; &#xC624;&#xD504;&#xB77C;&#xC778;&#xC5D0;&#xC11C; &#xCE90;&#xC2DC;&#xB41C; &#xB370;&#xC774;&#xD130;&#xC5D0; &#xC561;&#xC138;&#xC2A4;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p><i><span style="color: #C0C0C0">If you only sync private data and you don&#x2019;t need granular control over which data syncs, you can use Core Data with CloudKit. Core Data with CloudKit stores a local replica of a CloudKit private database and syncs it across all of the user&#x2019;s devices. This storage option doesn&#x2019;t support all CloudKit features&#x2014;for example, it doesn&#x2019;t support live queries and shared private data&#x2014;but can be simpler than using CloudKit directly. Core Data with CloudKit manages the schema for your iCloud container, so you don&#x2019;t have to.</span></i><br>&#xAC1C;&#xC778; &#xB370;&#xC774;&#xD130;&#xB9CC; &#xB3D9;&#xAE30;&#xD654;&#xD558;&#xACE0; &#xB370;&#xC774;&#xD130; &#xB3C4;&#xC775;&#xD654;&#xB97C; &#xC138;&#xBC00;&#xD558;&#xAC8C; &#xC81C;&#xC5B4;&#xD560; &#xD544;&#xC694;&#xAC00; &#xC5C6;&#xB294; &#xACBD;&#xC6B0; CloudKit&#xACFC; &#xD568;&#xAED8; Core Data&#xB97C; &#xC0AC;&#xC6A9;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. CloudKit&#xC744; &#xC0AC;&#xC6A9;&#xD55C; Core Data&#xB294; &#xAC1C;&#xC778; &#xB370;&#xC774;&#xD130; &#xBCA0;&#xC774;&#xC2A4;&#xC758; &#xB85C;&#xCEEC; &#xBCF5;&#xC81C;&#xBCF8;&#xC744; &#xC800;&#xC7A5;&#xD558;&#xACE0; &#xC0AC;&#xC6A9;&#xC790;&#xC758; &#xBAA8;&#xB4E0; &#xAE30;&#xAE30;&#xC5D0; &#xB3D9;&#xAE30;&#xD654;&#xD569;&#xB2C8;&#xB2E4;. &#xC774; &#xC800;&#xC7A5;&#xC18C; &#xC635;&#xC158;&#xC740; &#xC2E4;&#xC2DC;&#xAC04; &#xCFFC;&#xB9AC;&#xB098; &#xAC1C;&#xC778; &#xB370;&#xC774;&#xD130; &#xACF5;&#xC720; &#xB4F1; CloudKit&#xC758; &#xBAA8;&#xB4E0; &#xAE30;&#xB2A5;&#xC744; &#xC81C;&#xACF5;&#xD558;&#xC9C0;&#xB294; &#xC54A;&#xC9C0;&#xB9CC; CloudKit&#xC744; &#xC9C1;&#xC811;&#xC801;&#xC73C;&#xB85C; &#xC0AC;&#xC6A9;&#xD558;&#xB294; &#xAC83;&#xBCF4;&#xB2E4; &#xAC04;&#xB2E8;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. CloudKit&#xC744; &#xC0AC;&#xC6A9;&#xD55C; Core Data&#xB294; iCloud &#xCEE8;&#xD14C;&#xC774;&#xB108;&#xC758; &#xC2A4;&#xD0A4;&#xB9C8;&#xB97C; &#xAD00;&#xB9AC;&#xD558;&#xBBC0;&#xB85C; &#xC0AC;&#xC6A9;&#xC790;&#xAC00; &#xAD00;&#xB9AC;&#xD560; &#xD544;&#xC694;&#xAC00; &#xC5C6;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p><i><span style="color: #C0C0C0">To get started with CloudKit, see <a href="https://developer.apple.com/documentation/cloudkit/enabling_cloudkit_in_your_app" target="_blank">Enabling CloudKit in Your App</a>. For more information on Core Data with CloudKit, see <a href="https://developer.apple.com/documentation/coredata/mirroring_a_core_data_store_with_cloudkit/setting_up_core_data_with_cloudkit" target="_blank">Setting Up Core Data with CloudKit</a>.</span></i><br>CloudKit&#xC744; &#xC2DC;&#xC791;&#xD558;&#xB824;&#xBA74; <a href="https://developer.apple.com/documentation/cloudkit/enabling_cloudkit_in_your_app" target="_blank">Enabling CloudKit in Your App</a>&#xB97C; &#xD655;&#xC778;&#xD558;&#xC138;&#xC694;. CloudKit&#xC744; &#xC774;&#xC6A9;&#xD55C; Core Data&#xC5D0; &#xB300;&#xD574;&#xC11C; &#xB354; &#xC815;&#xBCF4;&#xB97C; &#xC5BB;&#xACE0; &#xC2F6;&#xB2E4;&#xBA74; <a href="https://developer.apple.com/documentation/coredata/mirroring_a_core_data_store_with_cloudkit/setting_up_core_data_with_cloudkit" target="_blank">Setting Up Core Data with CloudKit</a>&#xB97C; &#xD655;&#xC778;&#xD574;&#xC8FC;&#xC138;&#xC694;.</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="./" class="navigation navigation-prev " aria-label="Previous page: Introduction">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="APIDesignGuidelines/Conventions.md" class="navigation navigation-next " aria-label="Next page: Conventions">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Determining If CloudKit Is Right for Your App","level":"2.1","depth":1,"next":{"title":"Conventions","level":"2.2","depth":1,"path":"APIDesignGuidelines/Conventions.md","ref":"APIDesignGuidelines/Conventions.md","articles":[]},"previous":{"title":"Introduction","level":"1.1","depth":1,"path":"INTRO.md","ref":"INTRO.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"INTRO.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Determining If CloudKit Is Right for Your App.md","mtime":"2022-04-07T08:01:54.481Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-04-07T08:22:32.129Z"},"basePath":".","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="gitbook/gitbook.js"></script>
+    <script src="gitbook/theme.js"></script>
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

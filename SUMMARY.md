@@ -1,10 +1,9 @@
 
 * [Introduction](INTRO.md)
 
-### API Design Guidelines
+### Articles
 
-* [Fundamentals](APIDesignGuidelines/Fundamentals.md)
-* [Naming](APIDesignGuidelines/Naming.md)
+* [Determining If CloudKit Is Right for Your App](Determining If CloudKit Is Right for Your App.md)
 * [Conventions](APIDesignGuidelines/Conventions.md)
 * [Special Instructions](APIDesignGuidelines/Special_Instructions.md)
 
