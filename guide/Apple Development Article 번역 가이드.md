@@ -34,7 +34,7 @@
 ![무제 001](https://user-images.githubusercontent.com/73867548/162399454-952b3df5-31e0-4eb7-84bf-0eaf9e880c11.jpeg)
 
 ### 2️⃣ 줄바꿈 규칙
-![무제 002](https://user-images.githubusercontent.com/73867548/162399462-b636711b-29ca-42bb-9452-cd6cd988dcac.jpeg)
+![무제 002](https://user-images.githubusercontent.com/73867548/164190454-bf4e60fc-5d53-4912-a664-6814ae29873a.jpeg)
 
 ### 3️⃣ 번역문 속성
 ![무제 003](https://user-images.githubusercontent.com/73867548/162399466-5de85ca9-5106-4ab7-a52e-17f61f157c6d.jpeg)
