@@ -69,6 +69,8 @@ Apple Developer Documents 문서 중에서 `Article` 로 분류된 모든 페이
 - 먼저 저장소의 Issue를 확인합니다.
 - 작성자의 코멘트가 없는 Issue는 주인이 없는 Issue입니다. 주인이 없는 이슈에 코멘트를 달고 작업을 시작합니다.
     - Issue 제목은 `{MileStone}: 작성할 내용 제목` 으로 작성합니다.
+        - MileStone은 `저장소-Issues-Milestones`에서 확인할 수 있습니다.
+        - ex) Development Article: Displaying and Managing Views with a View Controller
     - 코멘트를 달 때에는 템플릿을 복사하여 템플릿의 내용을 필수로 기재합니다.
     - 작업 유형은 `new` / `edit` 중 유형에 따라 골라서 기재합니다.
     - 수정 작업을 할 경우에는 어떤 수정을 할 것인지 구체적으로 기록합니다.
