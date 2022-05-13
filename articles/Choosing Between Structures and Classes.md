@@ -56,7 +56,7 @@ Objective-C 코드와 상호작용을 호환할 때 클래스를 사용하세요
 ## 독자성[¹](#1)을 제어해야 할 때 클래스 사용하기
 
 <i><span style="color: #C0C0C0">Classes in Swift come with a built-in notion of identity because they're reference types. This means that when two different class instances have the same value for each of their stored properties, they're still considered to be different by the identity operator (===). It also means that when you share a class instance across your app, changes you make to that instance are visible to every part of your code that holds a reference to that instance. Use classes when you need your instances to have this kind of identity. Common use cases are file handles, network connections, and shared hardware intermediaries like [CBCentralManager](https://developer.apple.com/documentation/corebluetooth/cbcentralmanager).</span></i>    
-스위프트의 클래스는 참조 타입이기 때문에 독자성[¹](#1)에 대한 기본 개념이 함께 있습니다. 이 말은, 두 개의 서로 다른 클래스 인스턴스가 각각의 저장 프로퍼티에 대해 같은 값을 가질 때, identity 연산자(===)는 여전히 서로 다른 것으로 여겨집니다. 또한 앱에서 클래스 인스턴스를 공유할 때, 해당 인스턴스에 대한 변경 사항은 해당 인스턴스가 참조된 코드의 모든 부분에 보입니다. 이런 독자성[¹](#1)을 갖기 위해 인스턴스가 필요할 때 클래스를 사용하세요. 일반적인 사용 사례는 파일 다루기 *(File handles)*, 네트워크 연결 *(Network connections)*, [CBCentralManager](https://developer.apple.com/documentation/corebluetooth/cbcentralmanager)같은 공유 하드웨어 중개 *(Shared hardware intermediaries)* 입니다.
+스위프트의 클래스는 참조 타입이기 때문에 독자성[¹](#1)에 대한 기본 개념이 함께 있습니다. 이 말은, 두 개의 서로 다른 클래스 인스턴스가 각각의 저장 프로퍼티에 대해 같은 값을 가질 때, 독자성[¹](#1)연산자(===)는 여전히 서로 다른 것으로 여겨집니다. 또한 앱에서 클래스 인스턴스를 공유할 때, 해당 인스턴스에 대한 변경 사항은 해당 인스턴스가 참조된 코드의 모든 부분에 보입니다. 이런 독자성[¹](#1)을 갖기 위해 인스턴스가 필요할 때 클래스를 사용하세요. 일반적인 사용 사례는 파일 다루기 *(File handles)*, 네트워크 연결 *(Network connections)*, [CBCentralManager](https://developer.apple.com/documentation/corebluetooth/cbcentralmanager)같은 공유 하드웨어 중개 *(Shared hardware intermediaries)* 입니다.
 
 <i><span style="color: #C0C0C0">For example, if you have a type that represents a local database connection, the code that manages access to that database needs full control over the state of the database as viewed from your app. It's appropriate to use a class in this case, but be sure to limit which parts of your app get access to the shared database object.</span></i>    
 예를 들어 지역[²](#2) 데이터베이스 연결을 나타내는 타입이 있는 경우, 해당 데이터베이스에 대한 액세스를 관리하는 코드는 앱에서 보여지는 데이터베이스 상태를 완전히 제거해야 합니다. 이런 경우 클래스를 사용하는 것이 적절하지만, 앱에서 공유 데이터베이스 개체에 액세스할 수 있는 부분을 확실히 제한해야 합니다.
@@ -69,7 +69,7 @@ Treat identity with care. Sharing class instances pervasively throughout an app 
 <br>
 
 ## <i><span style="color: #C0C0C0">Use Structures When You Don't Control Identity</span></i>
-## 독자성[¹](#1)를 제어하지 않을 때 구조체를 기본으로 선택하기
+## 독자성[¹](#1)을 제어하지 않을 때 구조체를 기본으로 선택하기
 
 <i><span style="color: #C0C0C0">Use structures when you're modeling data that contains information about an entity with an identity that you don't control.</span></i>    
 제어하지 않는 독자성[¹](#1)을 가진 엔티티에 대한 정보가 들어있는 데이터를 모델링할 때 구조체를 사용하세요. 
@@ -106,8 +106,8 @@ var myRecord = try JSONDecoder().decode(PenPalRecord.self, from: jsonResponse)
 
 ---
 ###### 1 
-identity 독자성 
+identity 독자성  
 ###### 2
-local 지역 
+local 지역   
 ###### 3
-record, 레코드 [wiki](https://ko.wikipedia.org/wiki/로우_(데이터베이스))
+record, 레코드 [wiki](https://ko.wikipedia.org/wiki/로우_(데이터베이스))   
